@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --primary-teal: #087F83;
+  --soft-turquoise: #65C9BA;
+  --light-mint: #DDF5F1;
+  --pale-aqua: #EAF9F7;
+  
+  /* Hospital Logo Purple Accents */
+  --purple-accent: #75428A;
+  --soft-lavender: #EDE2F3;
+  --light-lavender: #F6F0F9;
+  
+  --main-text: #183B45;
+  --secondary-text: #45666B;
+  --border-color: #DDF5F1;
+  
+  --pure-white: #FFFFFF;
+  --soft-white: #FCFDFD;
+  
+  --background: #FFFFFF;
+  --foreground: #183B45;
+}
+
+@theme inline {
+  --color-primary-teal: var(--primary-teal);
+  --color-soft-turquoise: var(--soft-turquoise);
+  --color-light-mint: var(--light-mint);
+  --color-pale-aqua: var(--pale-aqua);
+  --color-purple-accent: var(--purple-accent);
+  --color-soft-lavender: var(--soft-lavender);
+  --color-light-lavender: var(--light-lavender);
+  --color-main-text: var(--main-text);
+  --color-secondary-text: var(--secondary-text);
+  --color-border-color: var(--border-color);
+  --color-pure-white: var(--pure-white);
+  --color-soft-white: var(--soft-white);
+}
+
+body {
+  background: var(--background);
+  color: var(--main-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8FC;
+}
+::-webkit-scrollbar-thumb {
+  background: #EDE2F2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #713F83;
+}

@@ -26,13 +26,13 @@ export default function HospitalLogo({
         />
       </div>
 
-      {/* Official Hospital Name: White (#FFFFFF) for light variant, Teal (#087F83) for dark variant */}
+      {/* Official Hospital Name: Purple (#800080 / #75147C) matching the emblem symbol */}
       <div className="flex flex-col justify-center min-w-0">
         <span 
           className={`font-extrabold tracking-[0.02em] sm:tracking-[0.03em] uppercase leading-tight ${
             isLight 
-              ? 'text-[15px] xs:text-[17px] sm:text-[22px] lg:text-[27px] xl:text-[30px] truncate sm:whitespace-nowrap text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]' 
-              : 'text-[15px] xs:text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px] text-[#087F83]'
+              ? 'text-[15px] xs:text-[17px] sm:text-[22px] lg:text-[27px] xl:text-[30px] truncate sm:whitespace-nowrap text-[#800080]' 
+              : 'text-[15px] xs:text-[16px] sm:text-[18px] lg:text-[20px] xl:text-[22px] text-[#800080]'
           }`}
           style={{ 
             fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',

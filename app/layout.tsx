@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingContact from '@/components/shared/FloatingContact';
+import MobileBottomNav from '@/components/layout/MobileBottomNav';
 import { HOSPITAL_DATA } from '@/data/hospital';
 
 export const metadata: Metadata = {
@@ -72,13 +73,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-sky-100 selection:text-sky-900">
+      <body className="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-sky-100 selection:text-sky-900 pb-16 md:pb-0">
         <Navbar />
         <main className="flex-1">
           {children}
         </main>
         <Footer />
         <FloatingContact />
+        <MobileBottomNav />
       </body>
     </html>
   );

@@ -86,10 +86,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 w-full bg-[#E9DAF9] ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full bg-[#E9DAF9] ${
         isScrolled
-          ? 'py-2.5 sm:py-3 shadow-xs border-b border-[#D8C2F0]/50'
-          : 'py-3 sm:py-4'
+          ? 'py-2.5 sm:py-3 shadow-md border-b border-[#D8C2F0]'
+          : 'py-3 sm:py-4 border-b border-transparent'
       }`}
     >
       <div className="w-full px-3 sm:px-6 lg:px-12">
@@ -100,11 +100,11 @@ export default function Navbar() {
             <HospitalLogo variant="light" showSubtitle={false} />
           </Link>
 
-          {/* Center-Left to Right Nav items flow */}
-          <nav className="hidden xl:flex items-center gap-2 lg:gap-3 text-[14px] font-medium text-[#173B45] flex-1 justify-start">
+          {/* Center-Left to Right Nav items flow: Home, About, Services, Doctors, Facilities, Contact */}
+          <nav className="hidden xl:flex items-center gap-1.5 lg:gap-2.5 text-[14px] font-medium text-[#173B45] flex-1 justify-start">
             <Link
               href="/"
-              className={`px-3.5 py-1.5 rounded-full transition-colors ${
+              className={`px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                 (pathname === '/' && activeSection === 'home')
                   ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                   : 'hover:text-[#087F83] hover:bg-white/50'
@@ -115,13 +115,13 @@ export default function Navbar() {
 
             <Link
               href="/about"
-              className={`px-3.5 py-1.5 rounded-full transition-colors ${
+              className={`px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                 pathname === '/about' || (pathname === '/' && activeSection === 'about')
                   ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                   : 'hover:text-[#087F83] hover:bg-white/50'
               }`}
             >
-              About Us
+              About
             </Link>
 
             {/* Services / Specialities Mega Menu Dropdown */}
@@ -132,7 +132,7 @@ export default function Navbar() {
             >
               <Link
                 href="/departments"
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all ${
+                className={`flex items-center gap-1 px-3.5 py-1.5 rounded-full transition-all whitespace-nowrap ${
                   pathname.startsWith('/departments') || pathname.startsWith('/specialities') || pathname.startsWith('/services') || (pathname === '/' && activeSection === 'services')
                     ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                     : 'text-[#173B45] hover:text-[#087F83] hover:bg-white/50'
@@ -312,18 +312,18 @@ export default function Navbar() {
 
             <Link
               href="/doctors"
-              className={`px-3 py-1.5 rounded-full transition-colors ${
+              className={`px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                 pathname === '/doctors' || (pathname === '/' && activeSection === 'doctors')
                   ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                   : 'hover:text-[#087F83] hover:bg-white/50'
               }`}
             >
-              Our Doctors
+              Doctors
             </Link>
 
             <Link
               href="/facilities"
-              className={`px-3 py-1.5 rounded-full transition-colors ${
+              className={`px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                 pathname === '/facilities' || (pathname === '/' && activeSection === 'facilities')
                   ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                   : 'hover:text-[#087F83] hover:bg-white/50'
@@ -334,13 +334,13 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className={`px-3.5 py-1.5 rounded-full transition-colors ${
+              className={`px-3.5 py-1.5 rounded-full transition-colors whitespace-nowrap ${
                 pathname === '/contact' || (pathname === '/' && activeSection === 'contact')
                   ? 'text-[#087F83] font-bold bg-white/70 shadow-2xs'
                   : 'hover:text-[#087F83] hover:bg-white/50'
               }`}
             >
-              Contact Us
+              Contact
             </Link>
           </nav>
 
@@ -357,10 +357,10 @@ export default function Navbar() {
               <span className="font-bold text-[#173B45]">{HOSPITAL_DATA.displayPhone}</span>
             </Link>
 
-            {/* Primary Appointment Button placed prominently on the right */}
+            {/* Primary Appointment Button placed prominently on the right with eye-catching blinking glow */}
             <Link
               href="/appointment"
-              className="hidden sm:inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#087F83] hover:bg-[#06676A] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all duration-200 group shrink-0"
+              className="hidden sm:inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#087F83] hover:bg-[#06676A] text-white text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all duration-200 group shrink-0 animate-cta-pulse"
             >
               <span>Book Appointment</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

@@ -31,12 +31,12 @@ export const ScrollReveal = ({
 }: ScrollRevealProps) => {
   const getInitialPosition = () => {
     switch (direction) {
-      case 'right': return { opacity: 0, x: 45, y: 0 };
-      case 'left': return { opacity: 0, x: -45, y: 0 };
-      case 'down': return { opacity: 0, x: 0, y: -35 };
-      case 'scale': return { opacity: 0, scale: 0.94, y: 15 };
+      case 'right': return { opacity: 0, y: 15 };
+      case 'left': return { opacity: 0, y: 15 };
+      case 'down': return { opacity: 0, x: 0, y: -20 };
+      case 'scale': return { opacity: 0, scale: 0.96, y: 10 };
       case 'up':
-      default: return { opacity: 0, x: 0, y: 35 };
+      default: return { opacity: 0, x: 0, y: 25 };
     }
   };
 

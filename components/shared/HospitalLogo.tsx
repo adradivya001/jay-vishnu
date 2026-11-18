@@ -15,14 +15,14 @@ export default function HospitalLogo({
 
   return (
     <div className={`flex items-center gap-3 sm:gap-3.5 lg:gap-4 select-none ${className}`}>
-      {/* Official Eye & Brain Neuro-Ophthalmic Symbol */}
-      <div className="relative w-[38px] h-[38px] xs:w-[44px] xs:h-[44px] sm:w-[54px] sm:h-[54px] lg:w-[60px] xl:w-[68px] lg:h-[60px] xl:h-[68px] shrink-0 flex items-center justify-center">
+      {/* Official Eye & Brain Neuro-Ophthalmic Symbol (Prominent Sizing) */}
+      <div className="relative w-[46px] h-[46px] xs:w-[52px] xs:h-[52px] sm:w-[62px] sm:h-[62px] lg:w-[72px] lg:h-[72px] xl:w-[78px] xl:h-[78px] shrink-0 flex items-center justify-center">
         <img
           src="/images/logo/official-hospital-symbol.png"
           alt="Jay Vishnu Hospital Symbol"
           className="w-full h-full object-contain"
-          width={68}
-          height={68}
+          width={78}
+          height={78}
         />
       </div>
 

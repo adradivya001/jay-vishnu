@@ -23,21 +23,21 @@ export default function Footer() {
               Column 1: Logo & Mission Statement (3.5 cols on desktop)
               ========================================================================= */}
           <div className="lg:col-span-3 xl:col-span-3 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="w-[50px] h-[50px] shrink-0">
+            <Link href="/" className="inline-flex items-center gap-3.5 group">
+              <div className="w-[62px] h-[62px] sm:w-[68px] sm:h-[68px] shrink-0">
                 <img
                   src="/images/logo/official-hospital-symbol.png"
                   alt="Jay Vishnu Hospital"
                   className="w-full h-full object-contain"
-                  width={50}
-                  height={50}
+                  width={68}
+                  height={68}
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-[18px] tracking-[0.02em] uppercase text-[#087F83] leading-none">
+                <span className="font-extrabold text-[20px] sm:text-[22px] tracking-[0.02em] uppercase text-[#800080] leading-none">
                   JAY VISHNU
                 </span>
-                <span className="font-bold text-[13px] tracking-[0.14em] uppercase text-[#75428A] leading-tight mt-0.5">
+                <span className="font-bold text-[14px] sm:text-[15px] tracking-[0.14em] uppercase text-[#800080] leading-tight mt-1">
                   HOSPITAL
                 </span>
               </div>

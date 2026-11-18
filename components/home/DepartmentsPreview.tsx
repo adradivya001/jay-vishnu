@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionHeading from '@/components/shared/SectionHeading';
-import { ScrollReveal } from '@/components/motion/MotionReveal';
 
 interface SpecialityItem {
   id: string;
@@ -56,7 +55,7 @@ export default function DepartmentsPreview() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [visibleCards, setVisibleCards] = useState(3);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [isAnimating, setIsAnimating] = useState(true);
   const touchStartXRef = useRef<number | null>(null);
 
   // Responsive visible cards count
@@ -76,49 +75,39 @@ export default function DepartmentsPreview() {
     return () => window.removeEventListener('resize', updateVisibleCards);
   }, []);
 
-  const maxIndex = Math.max(0, FIVE_SERVICES.length - visibleCards);
+  const totalOriginal = FIVE_SERVICES.length;
 
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
+    setIsAnimating(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev <= 0 ? totalOriginal - 1 : prev - 1));
+  }, [totalOriginal]);
 
-  const goToSlide = (idx: number) => {
-    setCurrentIndex(Math.min(idx, maxIndex));
-  };
-
-  // Auto-slide effect with hover pause and visibility change
+  // Seamless infinite loop handler
   useEffect(() => {
-    if (isPaused) {
-      if (timerRef.current) clearInterval(timerRef.current);
-      return;
+    if (currentIndex >= totalOriginal) {
+      const resetTimeout = setTimeout(() => {
+        setIsAnimating(false);
+        setCurrentIndex(0);
+      }, 700);
+      return () => clearTimeout(resetTimeout);
     }
+  }, [currentIndex, totalOriginal]);
 
-    timerRef.current = setInterval(() => {
-      nextSlide();
-    }, 3500);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [isPaused, nextSlide]);
-
-  // Handle browser tab visibility change
+  // Auto-playing sliding carousel timer (slides automatically every 3.2 seconds)
   useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        setIsPaused(true);
-      } else {
-        setIsPaused(false);
-      }
-    };
+    if (isPaused) return;
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []);
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3200);
+
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -135,16 +124,24 @@ export default function DepartmentsPreview() {
     touchStartXRef.current = null;
   };
 
+  // Cloned items to ensure perfectly seamless endless sliding across all viewport sizes
+  const extendedServices = [
+    ...FIVE_SERVICES,
+    ...FIVE_SERVICES,
+    ...FIVE_SERVICES
+  ];
+
   return (
     <section 
+      id="services"
       className="py-16 sm:py-20 bg-gradient-to-b from-[#F3EFF9]/40 via-white to-[#E9F5F0]/30 border-y border-[#EAE2F3]/60 relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="w-full px-4 sm:px-8 lg:px-12">
         
-        {/* Section Header with Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12">
+        {/* Section Header with Title, Subtitle, and Carousel Arrow Buttons */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10">
           <div>
             <SectionHeading
               badge="Our Medical Specialities"
@@ -156,49 +153,49 @@ export default function DepartmentsPreview() {
           </div>
 
           {/* Carousel Manual Controls */}
-          <div className="mt-6 md:mt-0 flex items-center gap-3">
+          <div className="mt-4 md:mt-0 flex items-center gap-2.5">
             <button
               type="button"
               onClick={prevSlide}
-              aria-label="Previous service"
-              className="w-10 h-10 rounded-full border border-[#EAE2F3] bg-white text-[#173B45] hover:text-[#087F83] hover:border-[#087F83] hover:bg-[#F3EFF9] shadow-xs flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+              aria-label="Previous speciality"
+              className="w-10 h-10 rounded-full border border-[#D8C2F0] bg-white text-[#173B45] hover:text-[#087F83] hover:border-[#087F83] hover:bg-[#F3EFF9] shadow-xs flex items-center justify-center transition-all duration-200 active:scale-90 cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               type="button"
               onClick={nextSlide}
-              aria-label="Next service"
-              className="w-10 h-10 rounded-full border border-[#EAE2F3] bg-white text-[#173B45] hover:text-[#087F83] hover:border-[#087F83] hover:bg-[#F3EFF9] shadow-xs flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+              aria-label="Next speciality"
+              className="w-10 h-10 rounded-full border border-[#D8C2F0] bg-white text-[#173B45] hover:text-[#087F83] hover:border-[#087F83] hover:bg-[#F3EFF9] shadow-xs flex items-center justify-center transition-all duration-200 active:scale-90 cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Carousel Viewport */}
+        {/* Carousel Slider Viewport */}
         <div 
           className="relative overflow-hidden cursor-grab active:cursor-grabbing pb-2"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <div
-            className="flex transition-transform duration-700 ease-out"
+            className={`flex ${isAnimating ? 'transition-transform duration-700 ease-out' : 'transition-none'}`}
             style={{
               transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`
             }}
           >
-            {FIVE_SERVICES.map((service) => (
+            {extendedServices.map((service, index) => (
               <div
-                key={service.id}
+                key={`${service.id}-${index}`}
                 className="px-2.5 sm:px-3 shrink-0"
                 style={{ width: `${100 / visibleCards}%` }}
               >
                 <div className="h-full bg-white rounded-2xl sm:rounded-3xl border border-[#EAE2F3] shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
                   
-                  {/* Top: Service Image */}
+                  {/* Service Image */}
                   <div>
-                    <div className="relative h-44 sm:h-48 w-full overflow-hidden bg-[#F3EFF9]">
+                    <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-[#F3EFF9]">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -207,7 +204,7 @@ export default function DepartmentsPreview() {
                       />
                     </div>
 
-                    {/* Middle: Title & Subtitle */}
+                    {/* Title & Subtitle */}
                     <div className="p-5 sm:p-6">
                       <h3 className="text-base sm:text-lg font-bold text-[#173B45] group-hover:text-[#087F83] transition-colors leading-snug">
                         {service.title}
@@ -218,7 +215,7 @@ export default function DepartmentsPreview() {
                     </div>
                   </div>
 
-                  {/* Bottom: View Details Link */}
+                  {/* View Details CTA Link */}
                   <div className="px-5 sm:px-6 pb-5 pt-0">
                     <Link
                       href={service.href}
@@ -235,21 +232,27 @@ export default function DepartmentsPreview() {
           </div>
         </div>
 
-        {/* Pagination Dots */}
+        {/* Carousel Position Indicator Dots */}
         <div className="mt-8 flex items-center justify-center gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => goToSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === idx
-                  ? 'w-7 bg-[#087F83]'
-                  : 'w-2 bg-[#EAE2F3] hover:bg-[#9163A8]/40'
-              }`}
-            />
-          ))}
+          {FIVE_SERVICES.map((_, idx) => {
+            const active = (currentIndex % totalOriginal) === idx;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  setIsAnimating(true);
+                  setCurrentIndex(idx);
+                }}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  active
+                    ? 'w-7 bg-[#087F83]'
+                    : 'w-2 bg-[#D8C2F0] hover:bg-[#9163A8]'
+                }`}
+              />
+            );
+          })}
         </div>
 
       </div>

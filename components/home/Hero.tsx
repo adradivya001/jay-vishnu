@@ -12,12 +12,16 @@ export default function Hero() {
           ========================================================================= */}
       <section className="hidden md:flex relative overflow-hidden bg-[#E9DAF9] h-[100dvh] max-h-[100dvh] items-center border-b border-[#D8C2F0] pt-[80px] sm:pt-[84px] lg:pt-[88px] box-border">
         
-        {/* Background Image: Doctor on the right fitted to the 100dvh viewport */}
+        {/* Background Image: Doctor on the right with full head and hair visible, slightly reduced size and positioned naturally downward */}
         <div 
-          className="absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat bg-right-bottom bg-contain lg:bg-contain xl:bg-contain"
+          className="absolute inset-0 w-full h-full pointer-events-none select-none bg-no-repeat"
           style={{
             backgroundImage: "url('/images/dr-bharat-vishnu-hero-perfect.jpg')",
-            backgroundPosition: 'right bottom',
+            backgroundPosition: 'right 2% bottom',
+            backgroundSize: 'contain',
+            maxHeight: 'calc(100dvh - 80px)',
+            marginTop: 'auto',
+            marginBottom: '0',
           }}
         />
 
@@ -106,15 +110,15 @@ export default function Hero() {
         
         {/* PART 1: HERO SECTION – DOCTOR IMAGE ONLY */}
         <section className="bg-[#E9DAF9] px-4 pt-[74px] pb-6 flex justify-center items-center">
-          <div className="relative w-full max-w-[360px] aspect-[4/5] max-h-[380px] rounded-3xl overflow-hidden shadow-md border border-[#D8C2F0] bg-gradient-to-b from-[#FAF5FC] via-[#E9DAF9] to-[#D8C2F0]">
+          <div className="relative w-full max-w-[340px] aspect-[4/5] max-h-[360px] rounded-3xl overflow-hidden shadow-md border border-[#D8C2F0] bg-gradient-to-b from-[#FAF5FC] via-[#E9DAF9] to-[#D8C2F0]">
             <img
               src="/images/dr-bharat-vishnu-hero-perfect.jpg"
               alt="Dr. Bharat Vishnu Reddy - Jay Vishnu Hospital"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: '70% 12%' }}
+              className="w-full h-full object-contain"
+              style={{ objectPosition: 'center 40%' }}
             />
             {/* Soft subtle bottom vignette gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#75428A]/20 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#75428A]/15 via-transparent to-transparent pointer-events-none" />
           </div>
         </section>
 

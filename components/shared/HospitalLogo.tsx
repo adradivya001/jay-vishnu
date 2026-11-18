@@ -15,8 +15,8 @@ export default function HospitalLogo({
 
   return (
     <div className={`flex items-center gap-3 sm:gap-3.5 lg:gap-4 select-none ${className}`}>
-      {/* Official Eye & Brain Neuro-Ophthalmic Symbol: 68px Desktop, 60px Tablet, 52px Mobile */}
-      <div className="relative w-[52px] h-[52px] sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] shrink-0 flex items-center justify-center">
+      {/* Official Eye & Brain Neuro-Ophthalmic Symbol: 68px Desktop, 60px Tablet, 42px Mobile */}
+      <div className="relative w-[38px] h-[38px] xs:w-[44px] xs:h-[44px] sm:w-[56px] sm:h-[56px] lg:w-[68px] lg:h-[68px] shrink-0 flex items-center justify-center">
         <img
           src="/images/logo/official-hospital-symbol.png"
           alt="Jay Vishnu Hospital Symbol"
@@ -27,9 +27,9 @@ export default function HospitalLogo({
       </div>
 
       {/* Official Hospital Name: White (#FFFFFF) for light variant, Teal (#087F83) for dark variant */}
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center min-w-0">
         <span 
-          className={`font-extrabold tracking-[0.03em] text-[20px] sm:text-[24px] lg:text-[29px] xl:text-[30px] uppercase leading-none whitespace-nowrap ${
+          className={`font-extrabold tracking-[0.02em] sm:tracking-[0.03em] text-[15px] xs:text-[17px] sm:text-[22px] lg:text-[29px] xl:text-[30px] uppercase leading-tight truncate sm:whitespace-nowrap ${
             isLight ? 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]' : 'text-[#087F83]'
           }`}
           style={{ 

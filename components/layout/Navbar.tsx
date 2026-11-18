@@ -88,15 +88,15 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 w-full bg-[#E9DAF9] ${
         isScrolled
-          ? 'py-3 shadow-xs border-b border-[#D8C2F0]/50'
-          : 'py-4'
+          ? 'py-2.5 sm:py-3 shadow-xs border-b border-[#D8C2F0]/50'
+          : 'py-3 sm:py-4'
       }`}
     >
-      <div className="w-full px-4 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between min-h-[58px] sm:min-h-[64px] lg:min-h-[72px] gap-6">
+      <div className="w-full px-3 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between min-h-[50px] sm:min-h-[64px] lg:min-h-[72px] gap-2 sm:gap-4 lg:gap-6">
           
           {/* Left: Hospital Logo with WHITE "JAY VISHNU HOSPITAL" text */}
-          <Link href="/" className="flex items-center group shrink-0 mr-4 lg:mr-8 xl:mr-10">
+          <Link href="/" className="flex items-center group shrink min-w-0 mr-1 sm:mr-4 lg:mr-8 xl:mr-10">
             <HospitalLogo variant="light" showSubtitle={false} />
           </Link>
 
@@ -345,7 +345,7 @@ export default function Navbar() {
           </nav>
 
           {/* Right: Emergency Contact Pill + Primary Action Button (Right Aligned) */}
-          <div className="flex items-center gap-3 shrink-0 ml-auto">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 ml-auto">
             
             {/* Soft Pale-Blue / Teal Emergency Pill */}
             <Link
@@ -360,7 +360,7 @@ export default function Navbar() {
             {/* Primary Appointment Button placed prominently on the right */}
             <Link
               href="/appointment"
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full bg-[#087F83] hover:bg-[#06676A] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all duration-200 group"
+              className="hidden sm:inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#087F83] hover:bg-[#06676A] text-white text-xs sm:text-sm font-semibold shadow-xs hover:shadow-md transition-all duration-200 group shrink-0"
             >
               <span>Book Appointment</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -370,7 +370,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="xl:hidden p-2 rounded-lg text-[#283440] hover:text-[#713F83] hover:bg-[#F4EDF7] focus:outline-none"
+              className="xl:hidden p-1.5 sm:p-2 rounded-lg text-[#173B45] hover:text-[#087F83] hover:bg-white/40 focus:outline-none shrink-0"
               aria-label="Toggle navigation menu"
             >
               {isMobileMenuOpen ? (

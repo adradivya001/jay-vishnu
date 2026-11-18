@@ -3,145 +3,131 @@ import {
   Phone, 
   MapPin, 
   Clock, 
-  ArrowRight,
+  ArrowUpRight,
+  Send,
+  Calendar,
   ExternalLink
 } from 'lucide-react';
 import { HOSPITAL_DATA, NAV_LINKS } from '@/data/hospital';
-import HospitalLogo from '@/components/shared/HospitalLogo';
 
 export default function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer className="bg-[#F4F0F8] text-[#34454D] border-t border-[#EAE2F3] w-full overflow-hidden">
-      {/* Main Footer Content */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10">
+    <footer className="bg-[#FAF5FC] text-[#2D3748] border-t border-[#EFE7F6] w-full">
+      {/* Main Footer Container */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start">
           
           {/* =========================================================================
-              Column 1: Hospital Identity & Branding (3.5 cols on desktop to prevent overlap)
+              Column 1: Logo & Mission Statement (3.5 cols on desktop)
               ========================================================================= */}
-          <div className="lg:col-span-4 xl:col-span-4 space-y-4">
-            <Link href="/" className="inline-block group max-w-full">
-              <HospitalLogo variant="dark" />
+          <div className="lg:col-span-3 xl:col-span-3 space-y-4">
+            <Link href="/" className="inline-flex items-center gap-3 group">
+              <div className="w-[50px] h-[50px] shrink-0">
+                <img
+                  src="/images/logo/official-hospital-symbol.png"
+                  alt="Jay Vishnu Hospital"
+                  className="w-full h-full object-contain"
+                  width={50}
+                  height={50}
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-[18px] tracking-[0.02em] uppercase text-[#087F83] leading-none">
+                  JAY VISHNU
+                </span>
+                <span className="font-bold text-[13px] tracking-[0.14em] uppercase text-[#75428A] leading-tight mt-0.5">
+                  HOSPITAL
+                </span>
+              </div>
             </Link>
             
-            <p className="text-sm text-[#45666B] leading-relaxed max-w-sm">
-              Established in 2019, providing dedicated consultations in Neurology and Ophthalmology, diagnostic services, eye checkups, cataract surgeries, and general OT facilities.
+            <p className="text-sm text-[#4A5568] leading-relaxed pr-2">
+              Dedicated neurological consultations, comprehensive eye care, and personalised medical attention to support patients and families throughout their healthcare journey.
             </p>
-
-            <div className="pt-1">
-              <Link
-                href="/appointment"
-                className="inline-flex items-center gap-2 text-xs font-bold text-[#087F83] hover:text-[#076B70] underline underline-offset-4 group transition-colors"
-              >
-                <span>Request an Appointment</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#9163A8] group-hover:translate-x-1 transition-transform shrink-0" />
-              </Link>
-            </div>
           </div>
 
           {/* =========================================================================
-              Column 2: Quick Navigation (2 cols on desktop)
+              Column 2: Quick Links (2 cols on desktop)
               ========================================================================= */}
-          <div className="lg:col-span-2 xl:col-span-2">
-            <h3 className="text-sm font-bold text-[#087F83] uppercase tracking-wider mb-4 border-l-2 border-[#9163A8] pl-2.5">
-              Quick Navigation
-            </h3>
-            <ul className="space-y-2.5 text-sm">
+          <div className="lg:col-span-2 xl:col-span-2 space-y-3">
+            <div>
+              <h3 className="font-serif text-lg font-bold text-[#1A202C] tracking-tight">
+                Quick Links
+              </h3>
+              <div className="w-8 h-[2.5px] bg-[#9163A8] mt-1.5 rounded-full" />
+            </div>
+
+            <ul className="space-y-2 pt-2 text-sm text-[#4A5568]">
               {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-[#45666B] hover:text-[#087F83] transition-colors flex items-center gap-2 group"
+                    className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] transition-colors shrink-0" />
-                    <span className="whitespace-nowrap">{link.name}</span>
+                    <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
+                    <span>{link.name}</span>
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link 
-                  href="/privacy-policy" 
-                  className="text-[#45666B] hover:text-[#087F83] transition-colors flex items-center gap-2 group"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] transition-colors shrink-0" />
-                  <span className="whitespace-nowrap">Privacy Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/terms" 
-                  className="text-[#45666B] hover:text-[#087F83] transition-colors flex items-center gap-2 group"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] transition-colors shrink-0" />
-                  <span className="whitespace-nowrap">Terms & Conditions</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
           {/* =========================================================================
-              Column 3: Medical Specialities & Additional Services (3 cols on desktop)
+              Column 3: Our Services (2.5 cols on desktop)
               ========================================================================= */}
-          <div className="lg:col-span-3 xl:col-span-3">
-            <h3 className="text-sm font-bold text-[#087F83] uppercase tracking-wider mb-4 border-l-2 border-[#087F83] pl-2.5">
-              Medical Specialities
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="p-2.5 rounded-xl bg-white/70 border border-[#EAE2F3] shadow-2xs">
-                <Link 
-                  href="/specialities/neurology"
-                  className="text-[#183B45] hover:text-[#087F83] font-bold text-xs flex items-center justify-between gap-2 group transition-colors"
-                >
-                  <span className="group-hover:text-[#087F83]">Neurology</span>
-                  <span className="text-[10px] text-[#9163A8] font-semibold bg-[#EAE2F3] px-2 py-0.5 rounded-full shrink-0">
-                    Dr. Bharat Vishnu Reddy
-                  </span>
-                </Link>
-              </div>
-
-              <div className="p-2.5 rounded-xl bg-white/70 border border-[#EAE2F3] shadow-2xs">
-                <Link 
-                  href="/specialities/ophthalmology"
-                  className="text-[#183B45] hover:text-[#087F83] font-bold text-xs flex items-center justify-between gap-2 group transition-colors"
-                >
-                  <span className="group-hover:text-[#087F83]">Ophthalmology</span>
-                  <span className="text-[10px] text-[#9163A8] font-semibold bg-[#EAE2F3] px-2 py-0.5 rounded-full shrink-0">
-                    Dr. Leela Padmini
-                  </span>
-                </Link>
-              </div>
+          <div className="lg:col-span-2 xl:col-span-2 space-y-3">
+            <div>
+              <h3 className="font-serif text-lg font-bold text-[#1A202C] tracking-tight">
+                Our Services
+              </h3>
+              <div className="w-8 h-[2.5px] bg-[#9163A8] mt-1.5 rounded-full" />
             </div>
 
-            <h3 className="text-xs font-bold text-[#087F83] uppercase tracking-wider mt-6 mb-3 border-l-2 border-[#9163A8] pl-2">
-              Additional Services & Facilities
-            </h3>
-            <ul className="space-y-2 text-xs text-[#45666B]">
+            <ul className="space-y-2 pt-2 text-sm text-[#4A5568]">
               <li>
                 <Link 
-                  href="/services/diagnostic-services"
-                  className="hover:text-[#087F83] transition-colors flex items-center gap-2 group"
+                  href="/specialities/neurology"
+                  className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] shrink-0" />
-                  <span>Diagnostic Services</span>
+                  <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
+                  <span>Neurology Care</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/specialities/ophthalmology"
+                  className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
+                >
+                  <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
+                  <span>Eye Care & Ophthalmology</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/services/cataract-surgery"
-                  className="hover:text-[#087F83] transition-colors flex items-center gap-2 group"
+                  className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] shrink-0" />
+                  <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
                   <span>Cataract Surgery</span>
                 </Link>
               </li>
               <li>
                 <Link 
-                  href="/services/general-ot-facilities"
-                  className="hover:text-[#087F83] transition-colors flex items-center gap-2 group"
+                  href="/services/diagnostic-services"
+                  className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#9163A8] group-hover:bg-[#087F83] shrink-0" />
+                  <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
+                  <span>Diagnostic Services</span>
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/services/general-ot-facilities"
+                  className="hover:text-[#087F83] transition-colors inline-flex items-center gap-1.5 group"
+                >
+                  <span className="text-[#9163A8] text-xs transition-transform group-hover:translate-x-0.5 font-mono">›</span>
                   <span>General OT Facilities</span>
                 </Link>
               </li>
@@ -149,68 +135,116 @@ export default function Footer() {
           </div>
 
           {/* =========================================================================
-              Column 4: Contact & Location (3 cols on desktop)
+              Column 4: Contact Us (2.5 cols on desktop)
               ========================================================================= */}
-          <div className="lg:col-span-3 xl:col-span-3 space-y-3.5">
-            <h3 className="text-sm font-bold text-[#087F83] uppercase tracking-wider mb-4 border-l-2 border-[#087F83] pl-2.5">
-              Hospital Location & Contact
-            </h3>
-            
-            <div className="flex items-start gap-2.5 text-sm">
-              <MapPin className="w-4 h-4 text-[#9163A8] shrink-0 mt-1" />
-              <p className="leading-snug text-[#45666B] text-xs sm:text-sm">
-                {HOSPITAL_DATA.address}
-              </p>
+          <div className="lg:col-span-2 xl:col-span-2 space-y-3">
+            <div>
+              <h3 className="font-serif text-lg font-bold text-[#1A202C] tracking-tight">
+                Contact Us
+              </h3>
+              <div className="w-8 h-[2.5px] bg-[#9163A8] mt-1.5 rounded-full" />
             </div>
 
-            <div className="flex items-center gap-2.5 text-sm">
-              <Phone className="w-4 h-4 text-[#087F83] shrink-0" />
-              <a 
-                href={`tel:${HOSPITAL_DATA.phone}`} 
-                className="text-[#183B45] hover:text-[#087F83] font-bold text-xs sm:text-sm transition-colors"
-              >
-                {HOSPITAL_DATA.displayPhone}
-              </a>
-            </div>
-
-            <div className="flex items-start gap-2.5 text-xs text-[#45666B] pt-1">
-              <Clock className="w-4 h-4 text-[#9163A8] shrink-0 mt-0.5" />
-              <div>
-                <p className="text-[#183B45] font-semibold">Consultation Timings:</p>
-                <p className="text-[11px] leading-relaxed mt-0.5">{HOSPITAL_DATA.timingsNotice}</p>
+            <div className="space-y-3 pt-2 text-sm">
+              {/* Address */}
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-[#9163A8] shrink-0 mt-0.5" />
+                <p className="text-xs sm:text-[13px] text-[#4A5568] leading-snug">
+                  3rd Cross Road, Ashok Nagar, Sai Nagar, Anantapur, Andhra Pradesh 515001.
+                </p>
               </div>
-            </div>
 
-            <div className="pt-2">
+              {/* Get Directions Link */}
               <a
                 href={HOSPITAL_DATA.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs bg-white hover:bg-[#EAE2F3] text-[#087F83] font-semibold px-3.5 py-2.5 rounded-xl border border-[#EAE2F3] shadow-xs transition-colors"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-[#087F83] hover:text-[#06676A] pl-6 transition-colors"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#9163A8] shrink-0" />
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-3 h-3 text-[#9163A8] shrink-0" />
+                <Send className="w-3 h-3 rotate-45" />
+                <span>Get Directions →</span>
+              </a>
+
+              {/* Phone */}
+              <div className="flex items-center gap-2 pt-1">
+                <Phone className="w-4 h-4 text-[#9163A8] shrink-0" />
+                <a
+                  href={`tel:${HOSPITAL_DATA.phone}`}
+                  className="font-bold text-sm text-[#1A202C] hover:text-[#087F83] transition-colors"
+                >
+                  {HOSPITAL_DATA.displayPhone}
+                </a>
+              </div>
+
+              {/* Timings */}
+              <div className="flex items-start gap-2 pt-1">
+                <Clock className="w-4 h-4 text-[#9163A8] shrink-0 mt-0.5" />
+                <div className="text-xs text-[#4A5568]">
+                  <p className="font-medium text-[#1A202C]">Mon – Sat: 9:00 AM – 8:00 PM</p>
+                  <p className="text-[#718096] text-[11px] mt-0.5">Emergency & Inpatient Support: 24/7</p>
+                </div>
+              </div>
+
+              {/* Book an Appointment CTA Pill Button */}
+              <div className="pt-2">
+                <Link
+                  href="/appointment"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#087F83] hover:bg-[#076B70] text-white text-xs font-bold shadow-xs hover:shadow-md transition-all duration-200"
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Book an Appointment</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* =========================================================================
+              Column 5: Interactive Google Map Card with "Open in Maps" Overlay
+              ========================================================================= */}
+          <div className="lg:col-span-3 xl:col-span-3 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[280px] h-[220px] rounded-2xl overflow-hidden border border-[#E2D6EE] shadow-sm bg-white group">
+              {/* Google Maps Embed iframe */}
+              <iframe
+                title="Jay Vishnu Hospital Location Map"
+                src={HOSPITAL_DATA.googleMapsEmbedSrc}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full grayscale-[25%] contrast-[1.05] group-hover:grayscale-0 transition-all duration-300"
+              />
+
+              {/* Floating "Open in Maps" Badge matching the reference screenshot */}
+              <a
+                href={HOSPITAL_DATA.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/95 hover:bg-white text-[#087F83] text-[11px] font-bold shadow-sm border border-slate-200 backdrop-blur-xs transition-all hover:scale-105"
+              >
+                <span>Open in Maps</span>
+                <ExternalLink className="w-3 h-3 text-[#087F83]" />
               </a>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Strip: Copyright & Disclaimers */}
-        <div className="mt-12 pt-8 border-t border-[#EAE2F3] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#5B6B73]">
-          <p className="text-center md:text-left">
-            © {currentYear} {HOSPITAL_DATA.name}. All rights reserved. Sai Nagar, Anantapur – {HOSPITAL_DATA.pinCode}.
+        {/* Bottom Strip: Copyright & Legal */}
+        <div className="mt-12 pt-6 border-t border-[#EFE7F6] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#718096]">
+          <p className="text-center sm:text-left">
+            © {currentYear} {HOSPITAL_DATA.name}. All rights reserved. Sai Nagar, Anantapur.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <Link href="/emergency" className="text-[#087F83] hover:text-[#076B70] font-semibold transition-colors">
-              Emergency Information
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
+            <Link href="/emergency" className="text-[#087F83] hover:text-[#06676A] font-semibold transition-colors">
+              Emergency Info
             </Link>
-            <span className="text-[#9163A8] hidden xs:inline">•</span>
+            <span className="text-[#9163A8]">•</span>
             <Link href="/privacy-policy" className="hover:text-[#087F83] transition-colors">
               Privacy Policy
             </Link>
-            <span className="text-[#9163A8] hidden xs:inline">•</span>
+            <span className="text-[#9163A8]">•</span>
             <Link href="/terms" className="hover:text-[#087F83] transition-colors">
               Terms & Conditions
             </Link>
